@@ -1,0 +1,1 @@
+My [xbar]https://github.com/matryer/xbar) plugins
