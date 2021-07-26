@@ -10,6 +10,20 @@
 
 # Modified from https://github.com/matryer/xbar-plugins/blob/master/System/microphone.sh
 
+if [ "$1" = 'toggle' ]; then
+  osascript -e 'if input volume of (get volume settings) is 0 then
+    set volume input volume 75
+  else
+    set volume input volume 0
+  end if'
+  exit
+fi
+
+if [ "$1" = 'pref' ]; then
+  open "x-apple.systempreferences:com.apple.preferences.sound"
+  exit
+fi
+
 ICON_MIC="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAAAAABWESUoAAAACXBIWXMAABYlAAAWJQFJUiTwAAAB2UlEQVQ4jY2Sv04UURTGf/fOTqZwC0BjNhSSlURMNiEhhlhQaMIDYGcCHbwAT0ChHW8guhotTKzstKazJDREN/ivUJYAWVeEzM7c+1nM7M66g9FTTeb8zjnf+e6BQViqG604bm1UsVwQlvqunOS0W7+IMIzvKXGSS7Q3jikBAZuKJUmKtUlQbhB9lMsAp/2o1MIy3ZPPAK/e9EBFoSYK+1WGMBqq/EcUQFn3/3WoABAYjSZMRa4AXLlTls5GGNafVEfqqTbXi61qHa0wq6GYZUWdGgYsGEJDxEhEmDAH/rbLUMp5KqSOfBXhEip4lwOi22WSb+2i+OA7k/zoogwwp5+Yp/OGNEunvO0wz+fTvjsVHurnDNcP1fOS76ld5+apHuQmgaVxrqewcCwveR0vwDOdNwrtAVvSGkw12963m1OwJj0auirDlZaSVSxjjcYYltVErcvD72uZO5Fe1DFgqD+XTubyATkVuLnXU/zafndA7fbdS3y5txO4P2wLmNiKs6P0ih9PDASYYoq/sXxn5iqH77dffrD4kvVhhGVRWsQShYPflcFXAoYzOMMQUwbM/WuJjWdg+Vbkw6+vRm4wYElpcS+plvoqczfF/pFJ0tSBS9PEHO333/43jAztfMWb5IQAAAAASUVORK5CYII="
 ICON_MIC_SLASH="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAAAAABWESUoAAAACXBIWXMAABYlAAAWJQFJUiTwAAACJElEQVQ4jW2Sz0tUURTHv+e8OzOUYVmLpEUxGCU2EhFBIirhsoVSbspwUctauC6KaBn9AxESBREyLdq1FFxbWEQRQmWQJpKNOda8H/d+W7z3Zu5IZ3k/33vu/Z7zBZql2HNnKQw/3eqA4j+lKL+jJS0Xy6lC2rig6yNjS9qYHzohEJU2RYD7DEmSbPABApHiLr+HoPSZliTpLKdgRF6+2espFD0RXcYnYVSr5EJXS6HoI5u8KFplw/3tbfnJBSlXrbLBrSHPbyZo48MIsEOwg5uWRxOgj7Qer59DoX2OfXRJzkNuDXvvC6ZnOlGhbfH6YPBkOvco6K5xEv0u55HlRUyx1g0BFBAUBCWIXHlWTDA7ERcUSzCQQiYAoCB0KudIj1NkAMI6KN4vmoxTbAgDZ5HLNn/hKGBcfh8/VnEIm79BQAHq9lcsAE2e4FUNZ/ClLsyjcPNGur/Qki7iWhm9dd7zJmkkkIzT8ecg8Jh/TvijMqpVRtxYplubOQJcIx+2rSqdX22o2F/ZB8XVmEsH/DiJVhmGvI4AEJSfkhunsgcEgFJmJyKj2Ho9/x0Hz450YHl8MbDND4hW2eDqzHYWSoaP9nsfEKT5GEHP7bmVJFmZu3sM6u+68CLNz25RjJKjUJS8rChOMsryEWCAHPDtAcbp20vP6+fnixcOxxoeBy6fLrnCt1n6PcZHgDEmbFbCMb9PADGorNsojhMyiePIrlfyOf8DeVZaaM73AA8AAAAASUVORK5CYII="
 
@@ -23,4 +37,7 @@ else
     CUR_ICON=${NEW_ICON_MIC}
 fi
 
-echo "| image=$CUR_ICON" 
+echo "| image=$CUR_ICON"
+echo '---'
+echo "Toggle Microphone | shell='$0' param1=toggle refresh=true"
+echo "Open Sound Preferences | shell='$0' param1=pref refresh=true"
