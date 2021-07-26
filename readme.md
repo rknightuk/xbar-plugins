@@ -1,1 +1,1 @@
-My [xbar]https://github.com/matryer/xbar) plugins
+My [xbar](https://github.com/matryer/xbar) plugins
